@@ -6,7 +6,7 @@ services:
     container_name: skladis-frontend
     restart: always
     ports:
-      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:3010:8080"
     depends_on:
       - skladis-backend
 
@@ -17,12 +17,11 @@ services:
     environment:
       PGHOST: skladis-db
       POSTGRES_PASSWORD: ${POSTGRES_SKLADIS_PASSWORD}
-      VUE_APP_BASE_URL: "https://api.skladis.com"
       REDIS_URL: "redis://redis:6379"
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
     ports:
-      - "127.0.0.1:8081:3009"
+      - "127.0.0.1:3009:3009"
     depends_on:
       - skladis-db
       - redis

@@ -17,7 +17,6 @@ services:
     environment:
       PGHOST: skladis-db
       POSTGRES_PASSWORD: ${POSTGRES_SKLADIS_PASSWORD}
-      VUE_APP_BASE_URL: "https://api.skladis.com"
       REDIS_URL: "redis://redis:6379"
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
