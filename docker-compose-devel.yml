@@ -1,17 +1,6 @@
 version: "3"
 
 services:
-  skladis-frontend:
-    image: localhost/skladis-frontend
-    container_name: skladis-frontend
-    restart: always
-    environment:
-      TZ: ${TIMEZONE}
-    ports:
-      - "127.0.0.1:3010:8080"
-    depends_on:
-      - skladis-backend
-
   skladis-backend:
     image: localhost/skladis-backend
     container_name: skladis-backend
@@ -23,6 +12,8 @@ services:
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       TZ: ${TIMEZONE}
+    volumes:
+      - ../app:/app/skladis_backend
     ports:
       - "127.0.0.1:3009:3009"
     depends_on:
