@@ -1,0 +1,11 @@
+#!/bin/bash
+export TMPDIR="/home/skladis/tmp"
+
+echo "DEPLOYING SKLADIS DOCKER"
+echo "=========================="
+
+ssh-keyscan github.com > ~/.ssh/known_hosts
+cd ~/docker
+git pull
+sudo systemctl daemon-reload
+sudo systemctl restart skladis.service
