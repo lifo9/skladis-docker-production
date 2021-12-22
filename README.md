@@ -1,6 +1,6 @@
 # Install
 
-Configure DB (in docker container)
+Configure DB (in docker container):
 
 ```
 docker exec -it skladis-db bash
@@ -21,4 +21,16 @@ Build for `skladis-backend` for development:
 
 ```
 docker build --build-arg RAILS_ENV=development -t skladis-backend .
+```
+
+Start the backend:
+
+```
+docker compose -f docker-compose-devel.yml up -d
+```
+
+Start the frontend:
+
+```
+PORT=3010 yarn run dev
 ```
