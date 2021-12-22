@@ -16,3 +16,9 @@ GRANT ALL PRIVILEGES ON DATABASE "skladis_test" to skladis_test;
 ALTER DATABASE skladis_test OWNER TO skladis_test;
 ALTER USER skladis_test CREATEDB;
 ```
+
+Build for `skladis-backend` for development:
+
+```
+docker build --build-arg RAILS_ENV=development -t skladis-backend .
+```

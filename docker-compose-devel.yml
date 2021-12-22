@@ -2,18 +2,19 @@ version: "3"
 
 services:
   skladis-backend:
-    image: localhost/skladis-backend
+    image: skladis-backend
     container_name: skladis-backend
     restart: always
     environment:
       PGHOST: skladis-db
+      DISABLE_SPRING: true
       POSTGRES_PASSWORD: ${POSTGRES_SKLADIS_PASSWORD}
       REDIS_URL: "redis://redis:6379"
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
       TZ: ${TIMEZONE}
     volumes:
-      - ../app:/app/skladis_backend
+      - ../app/skladis_backend:/app/
     ports:
       - "127.0.0.1:3009:3009"
     depends_on:
@@ -37,3 +38,10 @@ services:
     environment:
       TZ: ${TIMEZONE}
     command: redis-server
+
+  adminer:
+    container_name: skladis-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 3011:8080
