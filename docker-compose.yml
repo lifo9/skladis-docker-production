@@ -1,8 +1,8 @@
-version: '3'
+version: "3"
 
 services:
   skladis-frontend:
-    image: titan/skladis-frontend
+    image: localhost/skladis-frontend
     container_name: skladis-frontend
     restart: always
     ports:
@@ -11,7 +11,7 @@ services:
       - skladis-backend
 
   skladis-backend:
-    image: titan/skladis-backend
+    image: localhost/skladis-backend
     container_name: skladis-backend
     restart: always
     environment:

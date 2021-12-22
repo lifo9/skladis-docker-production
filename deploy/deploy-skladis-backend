@@ -7,5 +7,5 @@ echo "=========================="
 ssh-keyscan github.com > ~/.ssh/known_hosts
 cd ~/app/skladis-backend
 git pull
-podman build --cgroup-manager=cgroupfs -t titan/skladis-backend .
+podman build --cgroup-manager=cgroupfs -t skladis-backend .
 sudo systemctl restart skladis.service
