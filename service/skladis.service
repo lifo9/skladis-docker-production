@@ -9,7 +9,7 @@ Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=/home/skladis/docker/
 Environment=PATH=/home/skladis/.local/bin/:/home/skladis/docker/deploy:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ExecStart=/bin/sh -c "podman-compose down && podman-compose up -d"
+ExecStart=/bin/sh -c "podman-compose -f docker-compose-prod.yml down && podman-compose -f docker-compose-prod.yml up -d"
 ExecStop=podman-compose down
 TimeoutStartSec=0
 

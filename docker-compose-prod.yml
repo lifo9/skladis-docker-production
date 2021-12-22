@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  skladis-frontend:
+    image: localhost/skladis-frontend
+    container_name: skladis-frontend
+    restart: always
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - skladis-backend
+
+  skladis-backend:
+    image: localhost/skladis-backend
+    container_name: skladis-backend
+    restart: always
+    environment:
+      PGHOST: skladis-db
+      POSTGRES_PASSWORD: ${POSTGRES_SKLADIS_PASSWORD}
+      VUE_APP_BASE_URL: "https://api.skladis.com"
+      REDIS_URL: "redis://redis:6379"
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+    ports:
+      - "127.0.0.1:8081:3009"
+    depends_on:
+      - skladis-db
+      - redis
+
+  skladis-db:
+    image: docker.io/postgres:13-alpine
+    container_name: skladis-db
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  redis:
+    image: docker.io/redis:alpine
+    container_name: skladis-redis
+    volumes:
+      - ./redis:/data
+    command: redis-server
