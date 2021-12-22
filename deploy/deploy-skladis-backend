@@ -1,0 +1,11 @@
+#!/bin/bash
+export TMPDIR="/home/skladis/tmp"
+
+echo "DEPLOYING SKLADIS BACKEND"
+echo "=========================="
+
+ssh-keyscan github.com > ~/.ssh/known_hosts
+cd ~/app/skladis-backend
+git pull
+podman build --cgroup-manager=cgroupfs -t titan/skladis-backend .
+sudo systemctl restart skladis.service
