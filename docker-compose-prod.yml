@@ -5,6 +5,8 @@ services:
     image: localhost/skladis-frontend
     container_name: skladis-frontend
     restart: always
+    environment:
+      TZ: ${TIMEZONE}
     ports:
       - "127.0.0.1:8080:8080"
     depends_on:
@@ -20,6 +22,7 @@ services:
       REDIS_URL: "redis://redis:6379"
       SMTP_USERNAME: ${SMTP_USERNAME}
       SMTP_PASSWORD: ${SMTP_PASSWORD}
+      TZ: ${TIMEZONE}
     ports:
       - "127.0.0.1:8081:3009"
     depends_on:
@@ -33,10 +36,13 @@ services:
       - ./db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: ${TIMEZONE}
 
   redis:
     image: docker.io/redis:alpine
     container_name: skladis-redis
     volumes:
       - ./redis:/data
+    environment:
+      TZ: ${TIMEZONE}
     command: redis-server
